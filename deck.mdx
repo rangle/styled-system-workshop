@@ -1,13 +1,36 @@
 import { Appear, Head, Image } from 'mdx-deck'
-import { Invert, Split, SplitRight } from 'mdx-deck/layouts'
 import { Flex, Box } from 'grid-styled'
-import { Emoji, ListItem, UnorderedList, UnstyledList, StackBlitz } from './components'
+import {
+  Center,
+  Leading,
+  Invert,
+  Split,
+  SplitRight
+} from './src/layouts'
+import {
+  CodePlayground,
+  CodeSandbox,
+  CodeSlide,
+  Emoji,
+  Inline,
+  ListItem,
+  Paragraph,
+  UnorderedList,
+  UnstyledList,
+  StackBlitz
+} from './src/components'
 
-export theme from './theme'
+<!-- <StackBlitz width="60vw" id="styled-system-workshop-exercise-solution" /> -->
+<!-- <CodeSandbox id="woy5w424zl" /> -->
+
+export theme from './src/theme'
 
 <Head>
   <title>Programming Design Systems with Styled System</title>
+  <link rel="icon" type="image/svg+xml" href="images/styled-system.svg" />
 </Head>
+
+export default Center
 
 # <small>Programming</small> Design Systems <small>with</small> <br/>`styled-system`
 
@@ -15,26 +38,49 @@ export theme from './theme'
 
 ---
 
-## StackBlitz Usage
-
-<StackBlitz width="60vw" id="react-jb5dw3" />
-
----
-
 # Learning Outcomes
 
-1. The What, Why & How of Design Systems?
-1. Styled System Overview & API
-1. Components with `styled-system` + `styled-components`
-1. Components with `system-components`
+- Design systems overview
+- Overview of `styled-system` API
+- Building a design system with `styled-system`
 
 ---
 
-# Why use a Design System?
+# Design Systems
+
+- Visual design language
+- Set of design rules and constraints
+- Resilient to change (rebranding)
+
+---
+
+export default Invert
+
+[Design Language Image]
+
+---
+
+## Why?
 
 - Unite product teams around a common visual language
-- Accelerate design process by bridging teams
-- Enforce the Design Language
+- Streamline the design process
+- Maintain design consistency
+- Accelerate innovation through reuse
+
+---
+
+export default SplitRight
+
+<img src="images/ds3.png" />
+
+## May Consist Of
+
+- Style Guide & UX Patterns
+- Tools (Sketch, Figma, Illustrator, etc)
+- Processes & Workflows
+- CSS Library
+- Component Library
+- ...
 
 ---
 
@@ -44,7 +90,7 @@ export default Invert
 
 ---
 
-## Design Constraints <small>aka Design System Variables</small>
+## Design System Constraints <small>aka Variables or Tokens</small>
 
 <UnorderedList>
   <ListItem listStyleType="'🎨'">Colours</ListItem>
@@ -56,166 +102,319 @@ export default Invert
 
 ---
 
-## [The Evolution of<br/>CSS & UI Architecture](https://www.notion.so/rangle/The-Evolution-of-CSS-UI-Architecture-2291e1c572d0458ea6eac47a3071f686)
+## CSS Class Names Based Design System
+
+```css
+/* BEM */
+.Card {/* */}
+.Card__Header {/* */}
+.Card__Body {/* */}
+.Card__Action--primary {/* */}
+.Card__Action--secondary {/* */}
+```
+
+```html
+<div class="Card">
+  <h2 class="Card__Header">Hello</h2>
+  <div class="Card__Body">Lorem ipsum dolor sit amet</div>
+  <div>
+    <button class="Card__Action--primary">Yes</button>
+    <button class="Card__Action--secondary">No</button>
+  </div>
+</div>
+```
 
 ---
 
-# Styled System
-
-- Design system utilities for CSS-in-JS
-- Created by Brent Jackson [@Jxnblk](https://twitter.com/jxnblk) (Basscss, Grid Styled)
-
----
-
-<img style={{ height: '80vh' }} src="images/styled-system-concepts.png"  />
+<UnorderedList>
+  <ListItem listStyleType="'‍🤷🏽'">Have to write CSS to prototype new UI</ListItem>
+  <ListItem listStyleType="'🔁'">Have to keep two abstractions in sync (HTML & CSS)</ListItem>
+  <ListItem listStyleType="'😰'">"If I modify this class will it break something else?"</ListItem>
+</UnorderedList>
 
 ---
 
-## What
-
-- Applies style functions to CSS-in-JS components
-- Style functions access design system contraints
-- Applies customization props to components
+> You have access to a more powerful styling construct than CSS class names. You have components!
+> <cite>Michael Chan, <a href="https://medium.com/learnreact/scale-fud-and-style-components-c0ce87ec9772#.kg9vgnw39">“Scale” FUD and Style Components — learnreact</a></cite>
 
 ---
 
-## Theme
+export default Leading
+
+You are the design system author. Your users are other developers.
+
+Don't make your users write CSS. Let them compose components.
+
+---
+
+## Component Based Design System
+
+---
+
+export default Center
+
+<img style={{ width: '60vw' }} src="images/marquee.png" />
+
+---
+
+export default Center
+
+<img style={{ width: '60vw' }} src="images/marquee-debug.png" />
+
+---
+
+export default Center
+
+<img style={{ width: '60vw' }} src="images/marquee-components.png" />
+
+---
+
+## Component Based Architecture + Design System
 
 <Flex>
   <Box width={1/2}>
+    <h3>Primitive Components</h3>
     <UnorderedList>
-      <ListItem listStyleType="'🎨'">Colours</ListItem>
-      <ListItem listStyleType="'️↔'">Space</ListItem>
-      <ListItem listStyleType="'📏'">Size</ListItem>
-      <ListItem listStyleType="'𝌮'">Breakpoints</ListItem>
+      <ListItem>Lowest-level building block</ListItem>
+      <ListItem>Encapsulate styles and contain no logic</ListItem>
     </UnorderedList>
   </Box>
   <Box width={1/2}>
+    <h3>Macro Components</h3>
     <UnorderedList>
-      <ListItem listStyleType="'𝓕'">Typography</ListItem>
-      <ListItem listStyleType="'⃞'">Borders</ListItem>
-      <ListItem listStyleType="'➡️'">Variants</ListItem>
+      <ListItem>Composition of system-components</ListItem>
+      <ListItem>May contain some UI logic</ListItem>
+      <ListItem>Contain no application logic</ListItem>
     </UnorderedList>
   </Box>
 </Flex>
 
 ---
 
-## Defining a Theme
+export default Center
 
-```js
-// theme.js
-export default {
-  colors: {
-    black: '#000',
-    white: '#fff',
-    blue: '#07c',
-    grays: ['lightgray', 'lightgray', 'gray', 'darkgray'],
-    blues: ['lightblue', '#07c', 'navyblue', 'darkblue'],
-    ...
-  },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  breakpoints: ['40em', '52em', '64em'],
-  fontSizes: [16, 24, 32, 48, 64, 96, 128],
-  ...
-}
-```
+<img src="images/figma.gif" />
 
 ---
 
-## Applying the Theme
-
-```jsx
-import React, { Component } from 'react'
-import { ThemeProvider } from 'styled-components'
-import theme from './theme'
-
-export class App extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <AppShell />
-      </ThemeProvider>
-    )
-  }
-}
-
-export default App
-```
+<UnorderedList>
+  <ListItem listStyleType="'‍🙌'">Removes the mapping between components and CSS class names</ListItem>
+  <ListItem listStyleType="'📦'">Components as a low-level styling construct</ListItem>
+  <ListItem listStyleType="'🤝'">Designers can create a shared language with developers</ListItem>
+</UnorderedList>
 
 ---
 
-## Using the Theme
+## Component Based Design Systems
 
-- Props attempt to resolve values from theme first
-- Style functions have fallback logic (e.g. system colour name)
+<Flex>
+  <Box width={1/2}>
+    <UnorderedList>
+      <ListItem>Salesforce Lightning</ListItem>
+      <ListItem>IBM Carbon</ListItem>
+      <ListItem>Google Material</ListItem>
+      <ListItem>Shopify Polaris</ListItem>
+    </UnorderedList>
+  </Box>
+  <Box width={1/2}>
+    <UnorderedList>
+      <ListItem>Audi UI</ListItem>
+      <ListItem>Microsoft Fluent</ListItem>
+      <ListItem>Priceline One</ListItem>
+      <ListItem>Rebass</ListItem>
+    </UnorderedList>
+  </Box>
+</Flex>
+
+---
+
+# Styled System
+
+- Design system utilities for CSS-in-JS
+- Component based abstraction
+- Created by Brent Jackson [@Jxnblk](https://twitter.com/jxnblk) (Basscss, Grid Styled)
+
+---
+
+<img style={{ height: '80vh' }} src="images/styled-system-overview.png"  />
+
+---
+
+- Applies style functions to CSS-in-JS components
+- Style functions access design system contraints
+- Applies customization props to components
+- Works with most CSS-in-JS libraries
+
+---
+
+import styled, { css } from 'styled-components'
+
+## Styled Components <small>[API](https://www.styled-components.com/docs/basics#getting-started)</small>
+
+<CodePlayground
+  code={require("!raw-loader!./code-samples/styled-components-box.js")}
+  height="60vh"
+  previewBackground="linear-gradient(-180deg, #2382AE 0%, #C86DD7 100%)"
+  previewFlex={1}
+  editorFlex={1.5}
+  scope={{ styled, css }}
+/>
+
+---
+
+import { space, width, fontSize, color, flex, alignSelf } from 'styled-system'
+
+## Styled System <small>[API](https://jxnblk.com/styled-system/getting-started)</small>
+
+<CodePlayground
+  code={require("!raw-loader!./code-samples/styled-system-box.js")}
+  height="60vh"
+  previewBackground="linear-gradient(-180deg, #2382AE 0%, #C86DD7 100%)"
+  previewFlex={1}
+  editorFlex={1.5}
+  scope={{ styled, space, width, fontSize, color, flex, alignSelf }}
+/>
+
+---
+
+## System Components
+
+1. Set defaults with `clean-tag`, `clean-element`
+1. Apply `styled-system` style functions
+1. Render with CSS-in-JS library (`styled-components`)
+
+---
+
+import system from 'system-components'
+
+## System Components <small>[API](https://jxnblk.com/styled-system/system-components)</small>
+
+<CodePlayground
+  code={require("!raw-loader!./code-samples/system-components-box.js")}
+  height="60vh"
+  previewBackground="linear-gradient(-180deg, #2382AE 0%, #C86DD7 100%)"
+  previewFlex={1}
+  editorFlex={1.5}
+  scope={{ system }}
+/>
+
+---
+
+- Supports custom CSS styles (e.g. `&:hover`)
+- Can use underlying CSS-in-JS API (e.g. dynamic props, `css`)
+
+---
+
+export default Leading
+
+<Paragraph><Inline color="blue">system-components</Inline> simpler authoring experience when using styled-system</Paragraph>
+<Paragraph><Inline color="green">styled-system</Inline> design system utilities to build design system components</Paragraph>
+<Paragraph><Inline color="pink">styled-components</Inline> CSS-in-JS library</Paragraph>
+
+---
+
+## Styled System Ecosystem
+
+<img style={{ width: '100%' }} src="images/styled-system-ecosystem.png"  />
+
+---
+
+<CodePlayground
+  code={require("!raw-loader!./code-samples/system-components-typography.js")}
+  previewBackground="#fff"
+  previewAlign="left"
+  previewFlex={1}
+  editorFlex={1.5}
+  scope={{ system }}
+/>
+
+---
+
+export default Leading
+
+What Even Is A Component?
+
+Everything!<br/>Start as small as a single HTML tag
+
+---
+
+## Component Best Practices
+
+- Small Components
+- Compose Variations
+- Compose Complexity
+- Use <Inline color="blue">{children}</Inline>, <Inline color="green">slots</Inline> or <Inline color="gold">projection</Inline>
+- Avoid recreating the platform
+
+---
+
+## Core Components
+
+- Box (general purpose layout component)
+- Text & Heading
+- Card & Panel
+- Image & Avatar (circle image)
+- Button & Link
+- Input, TextArea & Label
+
+---
+
+export default Leading
+
+[rebass/components](http://jxnblk.com/rebass/components) is a great example of the type of components you should build & good APIs for design system components.
+
+---
+
+## Theme <small>[API](https://jxnblk.com/styled-system/table)</small>
+
+<img style={{ height: '60vh' }} src="images/styled-system-theme.png"  />
+
+---
+
+<CodeSlide
+  code={require("!raw-loader!./code-samples/styled-system-theme.js")}
+  title="Theme"
+  showNumbers={true}
+  dark={false}
+  steps={[
+    { range: [0, 1], title: 'theme.js', notes: `` },
+    { range: [3, 3], title: 'Breakpoints', notes: ``
+    },
+    { range: [4, 4], title: 'Space', notes: `
+        → Used for margin and padding scales
+        → Recommended to use powers of two to ensure alignment when used in nested elements
+        → Numbers are converted to px
+      `
+    },
+    { range: [5, 22], title: 'Typographic Scales', notes: `` },
+    { range: [23, 32], title: 'Border Styles', notes: `` },
+    { range: [33, 35], title: 'Sizing', notes: `` },
+    { range: [36, 60], title: 'Color', notes: `
+        → Nested objects work as well
+        → Arrays can be used for scales of colours
+      `
+    },
+    { range: [105, 114], title: 'Apply the theme' }
+  ]}
+/>
+
+---
+
+- Style prop functions from `styled-system` attempt to resolve values from theme first
+- Many style functions have defaults or fallback logic (e.g. system colour names)
 - Values can be overriden based on context
 
 ---
 
-## Using Colours
+## Style Props
+
+`CSS-in-JS` -> Style as a function of state
 
 ```jsx
-<Button color="primary" bg="white" p={2} />
-```
-
----
-
-## Spacing Scales
-
-```jsx
-<Button p={2} m={2} />
-```
-
----
-
-## Responsive Styles
-
-`width` | `fontSize` | `margin` | `padding`
-
-```jsx
-<Box m={[0, 1, 2]} />
-```
-
----
-
-<img style={{ height: '80vh' }} src="images/styled-system-theme.png"  />
-
----
-
-# styled-system + styled-components
-
-```jsx
-import styled from 'styled-components'
-import { space, color } from 'styled-system'
-
-const Box = styled`
-  ${space};
-  ${color};
-`
-```
-
-```jsx
-<Box p={3} color='white' bg='blues[0]'>
-  Light Blue Box
-</Box>
-```
-
----
-
-## CSS-in-JS
-
-> Style as a Function of State
-
-```js
 const style = (state) => ({
   color: state.primary ? 'blue' : 'darkgray'
 })
 ```
-
----
-
-## Style Functions
 
 - Creates props that map to CSS
 - Most map to a single CSS property
@@ -227,47 +426,104 @@ const style = (state) => ({
 
 ---
 
-<Image src="images/bunny-playing-piano.gif" size="cover" />
+# Creating Components
+
+- ✂️ Slice
+- 🔖 Assign (system-component, an extension or custom)
+- 👨🏽‍🏭 Compose
 
 ---
 
-## Exercise 1
+## Media Object
 
-[TODO]
-
----
-
-## Responsive Styles
-
-- using Flex
+[TODO] - Show example of media object decomposed
 
 ---
 
-# system-components
+## Exercise #1 - Primitive Components
 
-- Uing system to create components
-- Mix an match
-
----
-
-# Using system-components
+[TODO] - Cover, Title, Description, Button
 
 ---
 
-## Exercise [TODO]
+## Exercise #2 - Marco Components
+
+[TODO] - Compose primitives into media object
+
+---
+
+# Layout Components
+
+- `Flexbox` style functions
+  - [`grid-styled`](https://jxnblk.com/grid-styled/)
+- `CSS Grid` style functions
+
+---
+
+## Responsive Props
+
+`width` | `fontSize` | `margin` | `padding`
+
+```jsx
+<Box
+  width={[
+    1,      // 100% below the smallest breakpoint
+    1 / 2,  // 50% from the next breakpoint and up
+    1 / 4,  // 25% from the next breakpoint and up
+  ]}
+/>
+```
+
+---
+
+## Exercise #3 - Responsive Layout
+
+[TODO] - Responsive Media Object
+
+---
+
+# Customization
+
+- Use `style` to create custom style functions
+- Use `compose` to combine style functions
+
+---
+
+## Examples
+
+- `style`
+- `compose`
+
+---
+
+## Exercise #4 - Button Group
+
+- Button group with rounded corners on edges only
+- Custom border corner specific style function
+- Use `compose` to simplify adding each style function
+
+---
+
+## Dynamic Styles
+
+- Use `(props) => ({ style }})` to customize
+- Use `themeGet` to resolve theme values
+- Use `mixed` to mix styled-system with CSS styles
+
+---
+
+## Exercise #5 - Dynamic Props
+
+- Button toggle state for button group
+- themeGet for `selected` theme color
+- Apply mixed default style for buttons (hover)?
 
 ---
 
 # Advanced
 
-- custom props
-- mixed
-- themeGet
-- etc?
-
----
-
-## Exercise [TODO]
+- `variant`
+- `mixed` ??
 
 ---
 
@@ -280,35 +536,20 @@ const style = (state) => ({
 
 ---
 
-# Ecosystem
+## Other Frameworks
 
-<img style={{ width: '60vw' }} src="images/styled-system-ecosystem.png"  />
-
----
-
-## Reference Implementations
-
-- [Priceline Labs Design System](https://github.com/pricelinelabs/design-system)
-- [Rebass](https://jxnblk.com/rebass/)
-
----
-
-## Angular?
-
-Can we use emotion or fela with angular?
+- [Emotion](https://emotion.sh/) alternative `CSS-in-JS`
+- [vue-styled-system](https://github.com/c8r/vue-styled-system) for `Vue.js`
+- [Fela](http://fela.js.org/docs/guides/UsageWithAngular2.html) or [Emotion](https://stackblitz.com/edit/angular-emotion) for `Angular`
 
 ---
 
 # Additional Resources
 
-- TODO
-
----
-
-## Links
-
+- [The Evolution of CSS & UI Architecture](https://www.notion.so/rangle/The-Evolution-of-CSS-UI-Architecture-2291e1c572d0458ea6eac47a3071f686)
 - [Styled System](https://jxnblk.com/styled-system/)
-- [Styled Components](https://www.styled-components.com/)
+- [Priceline Design System](https://github.com/pricelinelabs/design-system)
+- [Rebass](https://jxnblk.com/rebass/)
 
 ---
 

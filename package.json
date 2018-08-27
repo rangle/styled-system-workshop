@@ -12,11 +12,15 @@
   },
   "dependencies": {
     "grid-styled": "^5.0.2",
-    "mdx-deck": "^1.6.4",
+    "mdx-deck": "^1.6.7",
+    "mdx-deck-code-surfer": "^0.1.2",
+    "raw-loader": "^0.5.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-live": "^1.11.0",
     "react-syntax-highlighter": "^8.0.1",
-    "styled-components": "^3.4.0",
+    "recompose": "^0.28.2",
+    "styled-components": "^3.4.5",
     "styled-system": "^3.0.2",
     "system-components": "^3.0.0"
   },
@@ -49,6 +53,9 @@
     ],
     "rules": {}
   },
+  "eslintIgnore": [
+    "code-samples"
+  ],
   "stylelint": {
     "processors": [
       "stylelint-processor-styled-components"

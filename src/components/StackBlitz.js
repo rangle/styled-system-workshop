@@ -1,11 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Embed from './Embed'
-
-const queryString = (params) =>
-  Object.keys(params)
-    .map((key) => key + '=' + params[key])
-    .join('&')
+import { queryString } from '../utils'
 
 export const StackBlitz = ({
   id,
