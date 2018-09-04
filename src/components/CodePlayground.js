@@ -76,7 +76,7 @@ const StyledError = styled(LiveError)`
 `
 
 export const CodePlayground = ({
-  width = '100%',
+  width = '60vw',
   height = '100%',
   noInline = true,
   previewBackground = 'transparent',

@@ -17,8 +17,10 @@ export const theme = {
   },
   fonts: {
     serif: 'athelas, georgia, times, serif',
-    sansSerif:
-      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif',
+    sansSerif: `
+      "avenir next", avenir, "helvetica neue", helvetica,
+      ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+      `,
   },
   borders: [
     0,
@@ -107,6 +109,7 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import theme from './theme'
 
+// prettier-ignore
 export const App = (props) => (
   <ThemeProvider theme={theme}>
     {/* content */}

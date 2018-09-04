@@ -12,4 +12,9 @@ const Box = system(
   'alignSelf',
 )
 
-render(<Box p={3}>This is a Box</Box>)
+// prettier-ignore
+render(
+  <Box p={3}>
+    This is a Box
+  </Box>
+)

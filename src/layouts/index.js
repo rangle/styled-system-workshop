@@ -1,3 +1,5 @@
 export { default as Center } from './Center'
 export { default as Leading } from './Leading'
-export { Invert, Split, SplitRight } from 'mdx-deck/layouts'
+export { default as Split } from './Split'
+export { default as SplitRight } from './SplitRight'
+export { Invert } from 'mdx-deck/layouts'

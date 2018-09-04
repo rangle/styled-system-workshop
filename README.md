@@ -4,7 +4,7 @@
 
 ## Running
 
-The slide deck is built in [mdx-deck](https://github.com/jxnblk/mdx-deck).
+The slide deck is built with [mdx-deck](https://github.com/jxnblk/mdx-deck).
 
 ```shell
 yarn install

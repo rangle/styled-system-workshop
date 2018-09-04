@@ -377,24 +377,17 @@ export default Leading
   showNumbers={true}
   dark={false}
   steps={[
-    { range: [0, 1], title: 'theme.js', notes: `` },
-    { range: [3, 3], title: 'Breakpoints', notes: ``
-    },
-    { range: [4, 4], title: 'Space', notes: `
-        → Used for margin and padding scales
-        → Recommended to use powers of two to ensure alignment when used in nested elements
-        → Numbers are converted to px
-      `
-    },
-    { range: [5, 22], title: 'Typographic Scales', notes: `` },
-    { range: [23, 32], title: 'Border Styles', notes: `` },
-    { range: [33, 35], title: 'Sizing', notes: `` },
-    { range: [36, 60], title: 'Color', notes: `
-        → Nested objects work as well
-        → Arrays can be used for scales of colours
-      `
-    },
-    { range: [105, 114], title: 'Apply the theme' }
+    { range: [0, 1], title: 'theme.js', notes: '' },
+    { range: [3, 3], title: 'Breakpoints', notes: '' },
+    { range: [4, 4], title: 'Space', notes:  'Used for margin and padding scales' },
+    { range: [4, 4], title: 'Space', notes: 'Recommended to use powers of two to ensure alignment when used in nested elements' },
+    { range: [4, 4], title: 'Space', notes: 'Numbers are converted to px' },
+    { range: [5, 22], title: 'Typographic Scales', notes: '' },
+    { range: [23, 32], title: 'Border Styles', notes: '' },
+    { range: [33, 35], title: 'Sizing', notes: 'Also supports min/max' },
+    { range: [36, 60], title: 'Color', notes: 'Nested objects work as well' },
+    { range: [36, 60], title: 'Color', notes: 'Arrays can be used for scales of colours' },
+    { range: [105, 114], title: 'Apply the theme', notes: 'Use ThemeProvider' },
   ]}
 />
 
@@ -546,6 +539,7 @@ const style = (state) => ({
 
 # Additional Resources
 
+- [Component Based Design System With Styled-System](https://varun.ca/styled-system/)
 - [The Evolution of CSS & UI Architecture](https://www.notion.so/rangle/The-Evolution-of-CSS-UI-Architecture-2291e1c572d0458ea6eac47a3071f686)
 - [Styled System](https://jxnblk.com/styled-system/)
 - [Priceline Design System](https://github.com/pricelinelabs/design-system)

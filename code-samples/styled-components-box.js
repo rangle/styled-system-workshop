@@ -4,4 +4,9 @@ const Box = styled.div`
   color: mediumvioletred;
 `
 
-render(<Box>This is a Box</Box>)
+// prettier-ignore
+render(
+  <Box>
+    This is a Box
+  </Box>
+)
