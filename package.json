@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "grid-styled": "5.0.2",
-    "mdx-deck": "1.7.1",
+    "mdx-deck": "1.10.2",
     "mdx-deck-code-surfer": "0.4.1",
     "raw-loader": "0.5.1",
     "react": "16.4.2",
